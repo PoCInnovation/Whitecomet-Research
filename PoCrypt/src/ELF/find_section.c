@@ -4,11 +4,11 @@
 ** File description:
 ** find_section
 */
-
+#include <string.h>
 #include <stddef.h>
 #include <elf.h>
 
-Elf64_Shdr *elfi_find_section (void *data, char *name)
+Elf64_Shdr *elfi_find_section(void *data, char *name)
 {
   char *sname;
   int i;
