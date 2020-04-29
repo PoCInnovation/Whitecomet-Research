@@ -40,7 +40,7 @@ static void save(crypter_t *crypt)
     int fd;
 
     /* Delete the file so we can write a modified image */
-    if ((unlink(crypt->fname)) < 0)
+    if (unlink(crypt->fname) < 0)
         DIE("unlink:");
     if ((fd = open(crypt->fname, O_CREAT | O_TRUNC | O_RDWR,S_IRWXU)) == -1)
         DIE("open:");
@@ -54,8 +54,6 @@ static char *generate_key (unsigned char *p, int size)
 {
     int i;
 
-    if (!key)
-        return NULL;
     for (i = 0; i < size; i++){
         p[i] = (rand() % 255);
         key[i] = p[i];
@@ -66,7 +64,11 @@ static char *generate_key (unsigned char *p, int size)
 /* Malware */
 CRYPTED(CODE) void payload(void)
 {
-    printf("Gros Malware\n");
+    int i = 0;
+    char *a = malloc(sizeof(1) * 23);
+    for (i = 0; i < 23; a++, i++)
+        printf("Gros Malware\n");
+    while (i--);
 }
 
 static void xor_segment(unsigned char *seg_start, int seg_len)
@@ -87,18 +89,17 @@ static void decode_and_crypt(crypter_t *crypter)
 
     /* Get ELF infos : */
     /* ELF - On crypted code */
-    if (!section)
+    if (section == NULL)
         DIE("elfi_find_section bin")
     crypter->seg_offset = section->sh_offset;
     crypter->seg_len = section->sh_size;
     key_len = crypter->seg_len; /* Because One Time Pad */
-    if (key_len > KEY_LEN)
-        printf("Payload's too big. : %d vs %d\n");
 
     /* ELF - On key */
     section = elfi_find_section(crypter->bin_content, KEY);
-    if (!section)
+    if (section == NULL)
         DIE("elfi_find_section key");
+
     key_offset = section->sh_offset;
 
     /* Give W permission on .unix && crypt payload in binary + memory && Remove W permission */
@@ -117,11 +118,30 @@ static void decode_and_crypt(crypter_t *crypter)
     save(crypter);
 }
 
+void remove_first_time(crypter_t *crypter)
+{
+    Elf64_Shdr *section = elfi_find_section(crypter->bin_content, ".unixb");
+    int offset = section ? (int)section->sh_offset : -1;
+    char *boolean_pos = crypter->bin_content + offset;
+
+    write(1, "Program running for the first time.\n", 36);
+    if (section == NULL){
+        write(1, "Big problem in your program man\n", 32);
+        return;
+    }
+    for (int i = 0; i < 4; i++)
+        boolean_pos[i] = 0;
+    for (int i = 0 ; i < CRYPTED_FUNC_SIZE; i++)
+        key[i] = 1;
+}
+
 /* main */
 int main(int ac, char const * const *av)
 {
     crypter_t *crypter = read_bin(av[0]);
 
+    if (first_time == true) /* Init a first-time key */
+        remove_first_time(crypter);
     srand(time(NULL) * (intptr_t)crypter);  /* Make things really random */
     decode_and_crypt(crypter); /* Decode 😇 */
     payload(); /* 😈 */
