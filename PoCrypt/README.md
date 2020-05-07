@@ -27,14 +27,18 @@ Congratulation you're connected !
 There are three main parts in the malware : the Payload, Key and Cryptor.
 We're using binary's segments for each parts.
 
-**The Cryptor \(Not Crypted) **
-The function that is called first when launching the binary. It takes the Key in it's segment and use it with XOR to crypt the Payload segment for being readable and launch it. When it's done the Cryptor re encrypt the Payload with a new key.
+#### The Cryptor - Not Crypted
+The first function called when launching the binary. It finds the Key and use it with the [XOR operation](https://en.wikipedia.org/wiki/XOR_cipher) in order to decrypt (on the currently running binary) the Payload segment. When it's done the Cryptor re encrypt the Payload with a new key.
 
-**The Key \(Not Crypted) **
-A random key regenerate at each execution of the program, uses for decrypt the Payload. It does the same size of the Payload for an **One Time Pad encryption**.
+#### The Key - Not Crypted
+A random key regenerates at each execution of the program, used to decrypt the Payload. The key and the payload must have the same length in order to have an **One Time Pad encryption**([\*](https://en.wikipedia.org/wiki/One-time_pad)).
 
-**The Payload \(Crypted) **
-It's a basic reverse shell, but it is encrypted.
+#### The Payload - Crypted 
+Basic reverse shell, the victim execute the program that then opens a server on it's machine on which you can connect and run commands.
+
+ 
+##### The forgotten one : Saving - Not Crypted
+Very basic file writing with the exception of deleting itself before doing so.
 
 
 ## Does it work ? :
