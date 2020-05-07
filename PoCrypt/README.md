@@ -5,7 +5,7 @@ Each file on your machine has a unique MD5 hash which change according to the co
 At first execution, the payload is not crypted, so the program just write a new binary ontop of itself with it's payload crypted (with a XOR key which is stored in a clear and accessible zone) and then executes the payload that is still in memory (not crypted because of the first execution). 
 At each new execution, it will do the same thing, expect it will grab the XOR key and decrypt itself before doing anything of what's mentioned above. And there will be a newly randomly generated key at each execution.
 
-To know what to crypt or where to find the key for instance, we used [sections (ELF)](https://fr.wikipedia.org/wiki/Executable_and_Linkable_Format), which you can see like drawers for your binary content. The key is stocked in `.PoC_Key`, the payload function in `.unix`, and a boolean to know wether we are running it for the first time or not `.unix_b`.
+To know what to crypt or where to find the key for instance, we used [sections (ELF)](https://fr.wikipedia.org/wiki/Executable_and_Linkable_Format), which you can see like drawers for your binary content. The key is stocked in `.PoC_Key`, the payload function in `.unix`, and a boolean to know wether we are running it for the first time or not `.unixb`. (Those sections doesn't exist, we can create/alter an already existing sections with `__attribute__((section(x)))` ([variable](http://www.keil.com/support/man/docs/armcc/armcc_chr1359124977848.htm), [function](http://www.keil.com/support/man/docs/armclang_ref/armclang_ref_chr1384876160481.htm), [`#pragma`](https://docs.microsoft.com/fr-fr/cpp/preprocessor/section?view=vs-2019)).
 
 > *Payload : 
 > Component of a computer virus that runs the malicious commands.*
