@@ -45,9 +45,11 @@ Very basic file writing with the exception of deleting itself before doing so.
 
 Yeah, pretty much indeed ;p
 At the moment only two anti-virus detect it as a threat on https://www.virustotal.com
-(Note that this is an ELF binary, and ELF are a lot less thoroughly analyzed).
-PE : Windows binary format
-ELF : Usually Linux binary format
+(Note that this is an ELF binary, and ELF are a lot less thoroughly analyzed than PEs).
+
+> *PE : Windows binary format*
+
+> *ELF : Usually Linux binary format*
 
 ## What's next ? :
 
