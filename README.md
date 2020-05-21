@@ -50,4 +50,4 @@ Some Anti-Virus uses AI during their analysis which allows them to spot hints an
 
 ## What's Next
 
-We're looking for more FUD technics, like metamorphic malware or how to bypass Anti-Virus that is using AI. We are also interesting in making our own Anti-Virus to counter those threats.
+We're looking for more FUD technics, like metamorphic malware or how to bypass Anti-Virus that is using AI. We are also interested in making our own Anti-Virus to counter those threats.
