@@ -34,10 +34,9 @@ VirusTotal
 ### Results for Windows
 VirusTotal
 ![windows av result 1](https://media.discordapp.net/attachments/553270916570939422/710856571931852840/unknown.png)
-Other virus scanner
+Other virus scanners
 ![windows av result 2](https://media.discordapp.net/attachments/553270916570939422/710895246204207205/unknown.png)
-AntiScanMe
-![windows av result 3](https://media.discordapp.net/attachments/553270916570939422/710888465432051762/UrawXTs2TIph.png)
+![AntiScanMe](https://media.discordapp.net/attachments/553270916570939422/710888465432051762/UrawXTs2TIph.png)
 
 ### How AV can bypass Polymorphism
 
