@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-This project was realized for research and educational purpose ***only***. PoC Innovation and the developpers of the organization are not responsible for what you do with this project.
+This project was realized for research and educational purpose ***only***. PoC Innovation and the developers of the organization are not responsible for what you do with this project.
 
 ## Introduction
 
