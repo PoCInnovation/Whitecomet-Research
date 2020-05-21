@@ -1,4 +1,5 @@
 # WhiteComet-Research
+### This project is for educational purposes only!
 
 Whitecomet-Research is a project about Polymorphic Malwares. Those can modify themselves at each execution to be undetectable by anti-virus analysis.  
 Each file on your machine has a unique MD5 hash which change according to the content of the file (if you have two files with the exact same content, they’ll have the same MD5 hash signatures, you can check it on linux with `md5sum [program]`). 
@@ -35,6 +36,8 @@ VirusTotal
 ![windows av result 1](https://media.discordapp.net/attachments/553270916570939422/710856571931852840/unknown.png)
 Other virus scanner
 ![windows av result 2](https://media.discordapp.net/attachments/553270916570939422/710895246204207205/unknown.png)
+AntiScanMe
+![windows av result 3](https://media.discordapp.net/attachments/553270916570939422/710888465432051762/UrawXTs2TIph.png)
 
 ### How AV can bypass Polymorphism
 
