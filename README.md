@@ -1,5 +1,10 @@
 # WhiteComet-Research
-### This project is for educational purposes only!
+
+## Disclaimer
+
+This project was realized for research and educational purpose ***only***. PoC Innovation and the developpers of the organization are not responsible for what you do with this project.
+
+## Introduction
 
 Whitecomet-Research is a project about Polymorphic Malwares. Those can modify themselves at each execution to be undetectable by anti-virus analysis.  
 Each file on your machine has a unique MD5 hash which change according to the content of the file (if you have two files with the exact same content, they’ll have the same MD5 hash signatures, you can check it on linux with `md5sum [program]`). 
