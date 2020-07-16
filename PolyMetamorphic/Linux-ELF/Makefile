@@ -11,7 +11,7 @@ NAME	=	PoCrypt
 
 CC	=	gcc -o
 
-CPPFLAGS	+= -Wall -masm=intel -I./include
+CFLAGS	+= -Wall -masm=intel -I./include
 
 LDFLAGS		+= -lm -lkeystone
 
