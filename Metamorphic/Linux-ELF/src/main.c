@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "tmp_header.h"
+#include "meta.h"
 
 static int get_file_size (int fd)
 {

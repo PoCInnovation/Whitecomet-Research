@@ -5,7 +5,7 @@
 ** gen_bytes
 */
 
-#include "tmp_header.h"
+#include "meta.h"
 
 // const char *reg_tab[] = {"EAX", "EBX", "ECX", "EDX", "esi", "edi", "ebp", "esp", NULL};
 const char *reg_tab[] = {"RAX", "RBX", "RCX", "RDX", "RSI", "RDI", "RBP", "RSP", NULL};
@@ -163,17 +163,3 @@ int size_calc(char *code)
       ks_close(ks);
       return (size);
   }
-
-// int main(int ac, char **av)
-// {
-//     int bit_nbr = 0;
-//     srand(time(NULL) * (intptr_t)av);
-
-//     if (ac != 2) {
-//         printf("Usage: %s {Nombre_de_bit}", av[0]);
-//         return (1);
-//     }
-//     if ((bit_nbr = atoi(av[1])) != 0)
-//         gen_bit(bit_nbr);
-//     return (0);
-// }
