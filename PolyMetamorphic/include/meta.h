@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** Linux-ELF
 ** File description:
-** tmp_header
+** Meta
 */
 
 
-#ifndef TMP_HEADER_H_
-#define TMP_HEADER_H_
+#ifndef META_H_
+#define META_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,4 +65,4 @@ int size_calc(char *code);
 unsigned char * encoder(char *code);
 
 int replace_bytes(int argc, char const *argv[]);
-#endif /* !TMP_HEADER_H_ */
+#endif /* !META_H_ */

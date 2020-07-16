@@ -5,30 +5,7 @@
 ** main
 */
 
-#include "tmp_header.h"
-
-static int get_file_size (int fd)
-{
-    struct stat _infos;
-
-    ASM
-    if (fstat(fd, &_infos) != 0)
-        exit(2);
-    return _infos.st_size;
-}
-
-static unsigned char *read_bin(int fd, int size)
-{
-    unsigned char *res = malloc(sizeof(unsigned char) * (size));
-
-    if (res == NULL)
-        exit(1);
-    if (read(fd, res, size) == -1)
-        exit(2);
-        ASM
-    return res;
-}
-
+#include "meta.h"
 unsigned char *gen_bit(int bit_nbr);
 
 unsigned char *strstr_asm(unsigned char *bin, unsigned char *pattern, int *remaining) // strstr with non null terminated strings and specific pattern length
@@ -82,7 +59,7 @@ void replace_junk(unsigned char **orig, const char *name, int size)
         printf("\n\e[92;1m- By : \e[0m\n");
         ASM
 
-        // * Replace bytes / Sneaky printing
+        // * Replace bytes / printing in gen_bit
         rdm_instr = gen_bit(ASM_W_BYTES);
         for (int i = 0; i < ASM_W_BYTES; i++)
             pattern[i + PATTERNS_L] = rdm_instr[i];
@@ -91,32 +68,4 @@ void replace_junk(unsigned char **orig, const char *name, int size)
         DECOY
         printf("\n");
     }
-
-    // * Write new file
-    // unlink(name);
-    // if ((new_bin_fd = open(name, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU)) == -1)
-    //     exit(2);
-    // write(new_bin_fd, *orig, size);
-    // close(new_bin_fd);
-}
-
-int replace_bytes(int argc, char const *argv[])
-{
-    int fd = open(*argv, O_RDONLY);
-    int size = 0;
-    unsigned char *binary = NULL;
-
-    if (fd == -1)
-        exit(2);
-    size = get_file_size(fd); // bin size && Exit on failure
-    binary = read_bin(fd, size); // bin string && Exit on failure
-    ASM
-    close(fd);
-    DECOY
-    srand((intptr_t) *argv); // Randomness
-    srand(time(NULL)/(rand()%10 + 1) * (intptr_t)argv); // Randomness
-    ASM
-    replace_junk(&binary, *argv, size);
-    ASM
-    return 0;
 }

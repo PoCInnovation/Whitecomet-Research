@@ -5,7 +5,7 @@
 ** gen_bytes
 */
 
-#include "tmp_header.h"
+#include "meta.h"
 
 const char *reg_tab[] = {"RAX", "RBX", "RCX", "RDX", "RSI", "RDI", "RBP", "RSP", NULL};
 const int instr_size[6] = {8, 2, 2, 2, 2, 3};
@@ -133,7 +133,7 @@ unsigned char *encoder(char *code)
           printf("\nCompiled: %lu bytes, statements: %lu\n", size, count);
       }
       encode_cpy = malloc(sizeof(char) * (size + 1));
-      for (int i = 0; i < size ; i++) {
+      for (size_t i = 0; i < size ; i++) {
           encode_cpy[i] = encode[i];
       }
       encode_cpy[size] = 0;
@@ -162,17 +162,3 @@ int size_calc(char *code)
       ks_close(ks);
       return (size);
   }
-
-// int main(int ac, char **av)
-// {
-//     int bit_nbr = 0;
-//     srand(time(NULL) * (intptr_t)av);
-
-//     if (ac != 2) {
-//         printf("Usage: %s {Nombre_de_bit}", av[0]);
-//         return (1);
-//     }
-//     if ((bit_nbr = atoi(av[1])) != 0)
-//         gen_bit(bit_nbr);
-//     return (0);
-// }
