@@ -21,9 +21,9 @@ Even though there is still a Makefile in the folder, we recommand not use it. It
 
 Our polymorphic binary process is as follows :
 
-1. Open bin
+1. Read bin (as string)
 2. Generate/Store new key
-3. Decrypt section (memory and as string)
+3. Decrypt section (in memory and as string)
 4. Crypt string and write as new binary
 5. Exec. payload
 6. Exit
