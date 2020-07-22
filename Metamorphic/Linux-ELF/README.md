@@ -34,7 +34,7 @@ We now know when to change the "dead" instructions.
 #### ASM NoOp Generator (gen_bytes.c)
 Generate code that does nothing, (shift bytes 0 to the left, inc + dec, etc...) according to a given size.
 
-## Once you have the pattern and the correct new instructions, you replace them.
+### Once you have the pattern and the correct new instructions, you replace them.
 
 #### The forgotten ones : Random - File managing
 Very basic file handling (but we overwrite the original binary) and randomness.
