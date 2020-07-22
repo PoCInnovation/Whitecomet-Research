@@ -36,9 +36,11 @@
     "nop;\n"\
     "popq rbx;\n"\
     "popq rax;\n"\
-    "popfq;");
+    "popfq;"\
+    );
 
-#define DECOY __asm__("pushfq\n"\
+#define DECOY __asm__(\
+    "pushfq\n"\
     "pushq rax;\n"\
     "pushq rbx;\n" \
     "popq rbx;\n"\

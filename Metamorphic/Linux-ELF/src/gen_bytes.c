@@ -7,8 +7,7 @@
 
 #include "meta.h"
 
-// const char *reg_tab[] = {"EAX", "EBX", "ECX", "EDX", "esi", "edi", "ebp", "esp", NULL};
-const char *reg_tab[] = {"RAX", "RBX", "RCX", "RDX", "RSI", "RDI", "RBP", "RSP", NULL};
+const char *reg_tab[] = {"RAX", "RBX", "RCX", "RDX", "RSI", "RDI", "RBP", "RSP", NULL}; // 64 bit
 const int instr_size[6] = {8, 2, 2, 2, 2, 3};
 
 int (*op_tab[6])(const char *, int, char **) = {
