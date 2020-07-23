@@ -39,7 +39,7 @@ It's a basic reverse shell malware, that means when the Victim launches it, it w
 
 #### Polymorphism and Anti-Virus
 
-For the majority of AV, polymorphic virus can be difficult to analyse. First because the malware code is encrypted and second because the signature changes at every launch, so the AV can't just compare the hash of the program with a other malicious program hashes.
+For a lot of AVs, polymorphic viruses can be difficult to analyse. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the hash of the program with malicious hashes databases.
 
 We used [virustotal](https://www.virustotal.com) for our tests.
 <details>
@@ -65,4 +65,4 @@ Some Anti-Virus uses AI during their analysis which allows them to spot hints an
 
 ## What's Next
 
-We're looking for more FUD technics, like metamorphic malware or how to bypass Anti-Virus that is using AI. We are also interested in making our own Anti-Virus to counter those threats.
+We're looking for more FUD technics or how to bypass Anti-Virus that is using AI. We are also interested in making our own Anti-Virus to counter those threats.
