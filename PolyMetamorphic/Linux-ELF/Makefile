@@ -1,9 +1,9 @@
 
-SRC	=	src/ELF/change_sec_perm.c \
-		src/ELF/find_section.c 	\
-		src/main.c	\
+SRC	=	src/main.c	\
 		src/gen_bytes.c	\
-		src/replace_bytes.c
+		src/replace_bytes.c	\
+		src/ELF/change_sec_perm.c \
+		src/ELF/find_section.c 	\
 
 OBJ	=	$(SRC:.c=.o)
 

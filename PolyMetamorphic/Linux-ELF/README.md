@@ -11,10 +11,8 @@ The CRYPTED_FUNC_SIZE must be the exact size of your new section ! You can use `
 
      git clone https://github.com/PoCFrance/Whitecomet-Research.git
      cd PolyMetamorphic
-     ./build.sh
+     make re
      ./PoCrypt
-
-Even though there is still a Makefile in the folder, we recommand not use it. It doesn't seems to work the way we want with `make` but works perfectly with a simple `gcc` line.
 
 
 # How it works :
