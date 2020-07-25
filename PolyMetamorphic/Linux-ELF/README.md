@@ -22,10 +22,10 @@ Even though there is still a Makefile in the folder, we recommand not use it. It
 Our polymorphic binary process is as follows :
 
 1. Read bin (as string)
-2. Generate/Store new key
-3. Decrypt section (in memory and as string)
+2. Decrypt section (in memory and as string)
+3. Generate/Store new key
 4. Crypt string and write as new binary
 5. Exec. payload
 6. Exit
 
-Between step 3 and 4 we have clear data and can find and replace the according patterns. So we just call our metamorphic replacing string function as step 3.5.
+Between step 2 and 4 we have clear data and can find and replace the according patterns. So we just call our metamorphic replacing string function as step 3.5 (or 2.5).
