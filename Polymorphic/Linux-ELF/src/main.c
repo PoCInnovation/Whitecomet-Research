@@ -141,7 +141,7 @@ void remove_first_time(crypter_t *crypter)
         write(1, "Big problem in your program man\n", 32);
         return;
     }
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 2; i++)
         boolean_pos[i] = 0;
     for (int i = 0 ; i < CRYPTED_FUNC_SIZE; i++)
         key[i] = 1;

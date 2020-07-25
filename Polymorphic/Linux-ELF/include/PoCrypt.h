@@ -52,7 +52,7 @@
 /* -TEMPORARY- */
 /* Key size and NULL XOR Key */
 static CRYPTED(".unixb") bool first_time = true;
-#define CRYPTED_FUNC_SIZE 449
+#define CRYPTED_FUNC_SIZE 182
 static CRYPTED(KEY) char key[CRYPTED_FUNC_SIZE];
 
 /* Crypter */
