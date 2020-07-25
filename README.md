@@ -39,7 +39,7 @@ It's a basic reverse shell malware, that means when the Victim launches it, it w
 
 #### Polymorphism and Anti-Virus
 
-For a lot of AVs, polymorphic viruses can be difficult to analyse. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the hash of the program with malicious hashes databases.
+For a lot of AVs, polymorphic viruses can be difficult to analyse. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the program's hash with malicious hashes databases.
 
 We used [virustotal](https://www.virustotal.com) for our tests.
 <details>
