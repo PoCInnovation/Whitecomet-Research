@@ -36,15 +36,12 @@
 #define DIE(s) {perror(s);exit(1);}
 #define DIE1(s) {fprintf(stderr, s);exit(1);}
 
-/* Bin "top" address in memory here : */
+/* Deprecated : Apparently doesn't work when compiling on Debian */
 #define BIN_START ((unsigned char*)0x400000)
 
-
-
-/* -TEMPORARY- */
 /* Key size and NULL XOR Key */
 static CRYPTED(".unixb") bool first_time = true;
-#define CRYPTED_FUNC_SIZE 363
+#define CRYPTED_FUNC_SIZE 419
 static CRYPTED(KEY) char key[CRYPTED_FUNC_SIZE];
 
 /* Crypter */
@@ -61,5 +58,5 @@ typedef struct crypter_s
 
 /* ELF  functions */
 Elf64_Shdr *elfi_find_section(void *data, char *name);
-void change_section_permissions(int seg_offset, int seg_len, bool write);
+void change_section_permissions(unsigned char *ptr, int seg_len, bool write);
 #endif /* !POCRYPT_H_ */

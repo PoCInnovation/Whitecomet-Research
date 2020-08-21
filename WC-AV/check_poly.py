@@ -4,7 +4,7 @@ import os
 import shutil
 import difflib
 
-paths = ["./maware"] if len(sys.argv) == 1 else sys.argv[1:]
+paths = ["./malware"] if len(sys.argv) == 1 else sys.argv[1:]
 # not clean var inits my brother
 OKGREEN = '\033[92m'
 WARNING = '\033[93m'
@@ -26,7 +26,6 @@ def sandbox(path):  # IDEA: Multiple execution and add contents to set
     ql = Qiling(filename=[path], rootfs="./",
                 env={"HOME": "/home", "PATH": "/bin"},
                 console=False)
-    # ql.bindtolocalhost = True
     ql.run()
     os.chdir("..")
 
