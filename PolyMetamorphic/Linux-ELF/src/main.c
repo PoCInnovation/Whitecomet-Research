@@ -117,15 +117,13 @@ ASM
     key_offset = section->sh_offset;
 
     /* Give W permission on .unix && crypt payload in binary + memory && Remove W permission */
-    change_section_permissions(crypter->seg_offset, crypter->seg_len, true);
-    xor_segment(BIN_START + crypter->seg_offset, crypter->seg_len);
+    change_section_permissions((unsigned char *)&save, crypter->seg_len, true);
+    xor_segment((unsigned char *)&save, crypter->seg_len);
     xor_segment(crypter->bin_content + crypter->seg_offset, crypter->seg_len);
-    change_section_permissions(crypter->seg_offset, crypter->seg_len, false);
+    change_section_permissions((unsigned char *)&save, crypter->seg_len, false);
     ASM
-    /* Give W permission on .PoC_key && rewrite key in binary && Remove W perm on .PoC_key*/
-    change_section_permissions(key_offset, crypter->seg_len, true);
+    /* Rewrite key in binary */
     generate_key(crypter->bin_content + key_offset, crypter->seg_len); // New key
-    change_section_permissions(key_offset, crypter->seg_len, false);
     ASM
     // ! The data's clear here, so we can look for the pattern and change it's instructions
     unsigned char **ptr_bin = (unsigned char **)&(crypter->bin_content);
