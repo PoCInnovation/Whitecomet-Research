@@ -25,7 +25,7 @@ For more specifics explanations we invite you to check our dedicated readme for 
 - Metamorphism
 
 We're working with ASM instructions, there are many possible architectures but for the sake of the repo, we're going to go with x86-64-only. It is technically possible to code something that would adapt to the arch..
-To understand where and how we change instructions, we invite you to check our dedicated readme for Linux and Windows Stored in the `Metamorphic` directory.
+To understand where and how we change instructions, we invite you to check the dedicated readme Stored in the `Metamorphic` directory.
 
 #### Why are the Linux and Windows directories separated ?
 
@@ -39,7 +39,7 @@ It's a basic reverse shell malware, that means when the Victim launches it, it w
 
 #### Polymorphism and Anti-Virus
 
-For a lot of AVs, polymorphic viruses can be difficult to analyse. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the program's hash with malicious hashes databases.
+For a lot of AVs, polymorphic viruses can be difficult to analyze. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the program's hash with malicious hashes databases.
 
 We used [virustotal](https://www.virustotal.com) for our tests.
 <details>
@@ -62,7 +62,8 @@ Other virus scanners
 #### How AV can bypass Polymorphism
 
 Some Anti-Virus uses AI during their analysis which allows them to spot hints and to guess the purpose of the malware and mark it as dangerous.
+Dynamic analysis can counter those types of AV bypass.
 
 ## What's Next
 
-We're looking for more FUD technics or how to bypass Anti-Virus that is using AI. We are also interested in making our own Anti-Virus to counter those threats.
+We're looking for more FUD technics or how to bypass Anti-Virus that is using AI. We are also interested in making our own Anti-Virus to counter those threats (We have a tiny polymorphic checker in `./WC-AV`).
