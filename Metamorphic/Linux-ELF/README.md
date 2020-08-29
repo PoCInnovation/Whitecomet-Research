@@ -25,6 +25,7 @@ Just compile and start the program, at each execution you'll have different ASM 
 We create a pattern (which can be seen in `include/meta.h`), with a shell: in our case the first and last 3 bytes of the pattern (we won't touch the shell).
 So each time we execute the binary, it'll change it's instructions between those 6 bytes of each pattern.
 The original pattern will of course do nothing, here we push [RFLAGS](https://en.wikipedia.org/wiki/FLAGS_register) aswell as RAX and RBX. Every action that changes the flags or RAX/RBX won't do anything drastic ("dead" instructions).
+The new instructions will be dead instructions aswell, even with other registries (see NoOp generator).
 
 #### Pattern Parser
 We injected patterns into our code, we need to find them again to change them.
