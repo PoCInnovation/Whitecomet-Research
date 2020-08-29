@@ -11,8 +11,8 @@ In this version we're going to use 3 more (fake) keys to slow down reverse eng.,
 
 # How to use :
 
-First one, you need to refer your IP and a Port to use, in `src/main.c` line 22 and 24.
-In order to use it over the internet, use your public IP and make a port forward on your local computer's IP with the associate Port.
+First of all, you need to refer your IP and a Port to use, in `src/main.c` line 22 and 24.
+In order to use it over the internet, use your public IP and forward the associated port.
 The size of the payload (important for encryption) is in `include/PE.h` as `KEY_SIZE`, change it accordingly.
 
      git clone https://github.com/PoCFrance/Whitecomet-Research.git
@@ -36,8 +36,8 @@ Here, we use 4 keys and rewrite on top of each one of them a new random one. We 
 # Differences with the Linux version :
 - In order to change page permissions (`change_section_permission.c`) we needed to change the functions called to some equivalent.
 - We don't use a bool to know wether it's the first time the program is running, we just strcmp one of the keys with a determined value.
-- Now we can get the base memory address from the binary itself (generally 0x400000 like Linux). But it can change with different systems.
+- Now we can get the base memory address from the binary itself (generally 0x400000). But it can change with different systems.
 - We don't read(argv[0]) but GetModuleHandle(NULL)
 - AntiViruses don't really care about Linux, so Windows protection is a lot better and harder to bypass : 
   - We added two techniques : Allocating too much memory, to not run the program on simulated environements aswell as checking the name of the binary (if it's PEFile_tests.exe), cause if it isn't, it means we're probably in an AV system.
-  - A process can't delete a file it's been run from on Windows, which is a problem for a program that rewrites itself. So we create some temporary files which we rename during execution, which is not the best solution but kind of works.
+  - On Windows, a process can't delete a file that is already running, which is a problem for a program that rewrites itself. So we create some temporary files which we rename during execution, which is not the best solution but works for our proof of concept.
