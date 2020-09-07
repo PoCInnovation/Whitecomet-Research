@@ -44,19 +44,53 @@ For a lot of AVs, polymorphic viruses can be difficult to analyze. First, becaus
 We used [virustotal](https://www.virustotal.com) for our tests.
 <details>
   <summary>Linux results</summary>
+<details>
+  <summary>Polymorphism</summary> 
+Virustotal
+  
+![Linux virustotal poly](https://cdn.discordapp.com/attachments/553270916570939422/750859939697655858/onvaimpressionnerlesreaders_1_virustotal.png)
+OPSWAT
 
-VirusTotal
-![Linux av result](https://media.discordapp.net/attachments/553270916570939422/705782405474156624/2020-05-01-160700_1187x817_scrot.png)
+![Linux opswat poly](https://cdn.discordapp.com/attachments/553270916570939422/750863524783325184/renderimpressioner_metadef_1.png)
+Falcon CrowdStrike
+
+![Linux crowdstrike poly](https://media.discordapp.net/attachments/553270916570939422/750863527983710269/readerimpressioner_crowdstrike_1.png)
+</details>
+<details>
+  <summary>Polymetamorphism</summary>
+
+![Linux virustotal polymeta](https://cdn.discordapp.com/attachments/553270916570939422/752598644875591745/polymeta.png)
+</details>
+<details>
+  <summary>Metamorphism</summary>
+
+No metamorphic test because there are no payload in it. But surprisingly enough, you'll get 0 threats aswell.
+</details>
 </details>
 
 <details>
-  <summary>Windows results</summary>
+  <summary>Windows results - Polymorhic only</summary>
+<details>
+  <summary>With VM/AV basic check</summary>
 
 VirusTotal
-![windows av result 1](https://media.discordapp.net/attachments/553270916570939422/710856571931852840/unknown.png)
-Other virus scanners
-![windows av result 2](https://media.discordapp.net/attachments/553270916570939422/710895246204207205/unknown.png)
-![AntiScanMe](https://media.discordapp.net/attachments/553270916570939422/710888465432051762/UrawXTs2TIph.png)
+
+![windows av result 1](https://cdn.discordapp.com/attachments/553270916570939422/752290069267611648/unknown.png)
+AntiscanMe
+
+![windows av result 2](https://cdn.discordapp.com/attachments/553270916570939422/752290793535832117/02rkSqjRN12d.png)
+We can see that the most used/popular AVs (Avast, Kaspersky, AVG, Avira, BitDefender, W10 Defender,...) are not detecting the binary as a threat.
+</details>
+<details>
+  <summary>Without VM/AV basic check</summary>
+VirusTotal
+  
+![windows av result 1](https://cdn.discordapp.com/attachments/553270916570939422/752292342404481134/unknown.png)
+AntiscanMe
+
+![windows av result 2](https://cdn.discordapp.com/attachments/553270916570939422/752291918368473128/uSNbvs4vqIvj.png)
+Even though there are less AVs that detect it, the major ones are triggered.
+</details>
 </details>
 
 #### How AV can bypass Polymorphism
