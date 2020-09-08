@@ -98,7 +98,7 @@ Even though there are less AVs that detect it, some of the major ones are trigge
     </details>
 </details>
 
-With those results, we can see that the polymorphic behavior (metamorphism is a polymorphic behavior aswell) is not checked at all on most AVs. A program should almost **never** be polymorphic (should be avoinded even when updating itself) and this should be checked by AVs in order to mark it as a malicious behavior. 
+With those results, we can see that the polymorphic behavior (metamorphism is a polymorphic behavior aswell) is not checked at all on most AVs. A program should almost **never** be polymorphic (even when updating itself) and this should be checked by AVs in order to mark it as a malicious behavior. 
 
 #### How AV can bypass Polymorphism
 
