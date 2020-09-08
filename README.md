@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-This project was realized for research and educational purpose ***only***. The PoC organization and its developers are not responsible of what you do with this project.
+This project was realized for research and educational purpose **_only_**. The PoC organization and its developers are not responsible of what you do with this project.
 
 ## Introduction
 
@@ -37,17 +37,18 @@ The compilation and coding (ex: libraries) in both program will be different too
 
 It's a basic reverse shell malware, that means when the Victim launches it, it will open a hidden command interpreter on his computer and link it on yours. So you can manage whatever you want in the limits that a shell can provide you of course.
 
-#### Polymorphism and Anti-Virus
+### Polymorphism and Anti-Virus
 
 For a lot of AVs, polymorphic viruses can be difficult to analyze. First, because the malicious code is encrypted and second because the signature changes at every launch, so the AV can't just compare the program's hash with malicious hashes databases.
 
 We used [virustotal](https://www.virustotal.com) for our tests.
+
 <details>
   <summary>Linux results</summary>
-<details>
-  <summary>Polymorphism</summary> 
+    <details>
+      <summary>Polymorphism</summary>
 Virustotal
-  
+
 ![Linux virustotal poly](https://cdn.discordapp.com/attachments/553270916570939422/750859939697655858/onvaimpressionnerlesreaders_1_virustotal.png)
 OPSWAT
 
@@ -55,23 +56,25 @@ OPSWAT
 Falcon CrowdStrike
 
 ![Linux crowdstrike poly](https://media.discordapp.net/attachments/553270916570939422/750863527983710269/readerimpressioner_crowdstrike_1.png)
-</details>
-<details>
-  <summary>Polymetamorphism</summary>
+      </details>
+      <details>
+        <summary>Polymetamorphism</summary>
 
 ![Linux virustotal polymeta](https://cdn.discordapp.com/attachments/553270916570939422/752598644875591745/polymeta.png)
-</details>
-<details>
-  <summary>Metamorphism</summary>
+      </details>
+      <details>
+        <summary>Metamorphism</summary>
 
 No metamorphic test because there are no payload in it. But surprisingly enough, you'll get 0 threats aswell.
-</details>
+    </details>
 </details>
 
+---
+
 <details>
-  <summary>Windows results - Polymorhic only</summary>
-<details>
-  <summary>With VM/AV basic check</summary>
+  <summary>Windows results - Polymorphic only</summary>
+    <details>
+      <summary>With VM/AV basic check</summary>
 
 VirusTotal
 
@@ -79,24 +82,28 @@ VirusTotal
 AntiscanMe
 
 ![windows av result 2](https://cdn.discordapp.com/attachments/553270916570939422/752290793535832117/02rkSqjRN12d.png)
-We can see that the most used/popular AVs (Avast, Kaspersky, AVG, Avira, BitDefender, W10 Defender,...) are not detecting the binary as a threat.
-</details>
-<details>
-  <summary>Without VM/AV basic check</summary>
+
+We can see that some of the most used/popular AVs (Avast, Kaspersky, AVG, Avira, McAfee, W10 Defender,...) are not detecting the binary as a threat.
+    </details>
+    <details>
+      <summary>Without VM/AV basic check</summary>
 VirusTotal
-  
+
 ![windows av result 1](https://cdn.discordapp.com/attachments/553270916570939422/752292342404481134/unknown.png)
 AntiscanMe
 
 ![windows av result 2](https://cdn.discordapp.com/attachments/553270916570939422/752291918368473128/uSNbvs4vqIvj.png)
-Even though there are less AVs that detect it, the major ones are triggered.
+
+Even though there are less AVs that detect it, some of the major ones are triggered.
+    </details>
 </details>
-</details>
+
+With those results, we can see that the polymorphic behavior (metamorphism is a polymorphic behavior aswell) is not checked at all on most AVs. A program should almost **never** be polymorphic (should be avoinded even when updating itself) and this should be checked by AVs in order to mark it as a malicious behavior. 
 
 #### How AV can bypass Polymorphism
 
-Some Anti-Virus uses AI during their analysis which allows them to spot hints and to guess the purpose of the malware and mark it as dangerous.
-Dynamic analysis can counter those types of AV bypass.
+Some Anti-Virus uses AI (machine learning) which allows them to recognize more malwares over time with similarities and behaviors.
+Dynamic analysis can counter some of those types of AV bypass.
 
 ## What's Next
 
