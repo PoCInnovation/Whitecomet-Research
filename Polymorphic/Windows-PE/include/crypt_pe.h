@@ -18,7 +18,7 @@
 #include <fcntl.h> // for open, etc
 // * Author compiled with MinGW on W10 x64
 
-#define CEIL(x) (int)((float)(x) == (int)(x) ? (x) : (x) + 1)
+#define CEIL(x) (int)(x + (int) ((float)(x) != (int)(x)) )
 #define MAX(x, y) (x > y ? x : y)
 #define KEY_SIZE 1536 // ? Size of the segment to have an OTP
 #define VAR_OFFSET 32.0 // ? Bytes to skip before accessing to the variables in the sections.
